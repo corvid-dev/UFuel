@@ -34,7 +34,7 @@ def import_meals():
                     SET calories = ?, carbohydrates = ?, fat = ?, protein = ?
                     WHERE id = ?
                 """, (calories, carbs, fat, protein, existing[0]))
-                print(f"🔁 Updated: {name} ({location})")
+                print(f"Updated: {name} ({location})")
             else:
                 cursor.execute("""
                     INSERT INTO meals (name, calories, carbohydrates, fat, protein, location)

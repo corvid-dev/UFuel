@@ -14,6 +14,6 @@ docker build -t ufuel . --no-cache --progress=plain
 
 # Step 4: Run the container
 Write-Host "Starting the UFUEL container on port 5000..." -ForegroundColor Yellow
-docker run -p 5000:5000 -v "$(Get-Location):/app" ufuel
+docker run -p 5000:5000 -v "${PWD}:/app" ufuel
 
 Write-Host "Rebuild complete. UFUEL is running at http://localhost:5000" -ForegroundColor Green
