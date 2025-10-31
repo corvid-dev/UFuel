@@ -12,7 +12,7 @@ Meal planning application for Towson Dining Halls
 
    ```powershell
    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-   .\Launch.ps1
+   .\rebuild_launch_docker.ps1
    ```
 
 2. Connect to [http://127.0.0.1:5000](http://127.0.0.1:5000)
