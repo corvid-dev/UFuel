@@ -3,12 +3,12 @@ import sqlite3
 import os
 
 def initialize_db():
-    # Use an absolute path so it works inside Docker too
+    # Use an absolute path
     db_path = os.path.join(os.path.dirname(__file__), 'meal_library.db')
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    # Drop the table if it exists (optional — good for testing)
+    # Drop the table if it exists
     cursor.execute("DROP TABLE IF EXISTS meals")
 
     # Create the meals table
