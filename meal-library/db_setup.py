@@ -20,7 +20,8 @@ def initialize_db():
             carbohydrates INTEGER,
             fat INTEGER,
             protein INTEGER,
-            location TEXT
+            location TEXT,
+            meal_type TEXT NOT NULL
         )
     """)
 

@@ -18,18 +18,18 @@ def verify_meals():
         conn.close()
         return
 
-    # Retrieve all meal data
+    # Retrieve all meal data (including meal_type)
     cursor.execute("""
-        SELECT name, location, calories, carbohydrates, fat, protein
+        SELECT name, location, meal_type, calories, carbohydrates, fat, protein
         FROM meals
-        ORDER BY location, name;
+        ORDER BY location, meal_type, name;
     """)
     rows = cursor.fetchall()
 
     if not rows:
         print("No meals found in the database.")
     else:
-        headers = ["Name", "Location", "Calories", "Carbs", "Fat", "Protein"]
+        headers = ["Name", "Location", "Meal Type", "Calories", "Carbs", "Fat", "Protein"]
         print(tabulate(rows, headers=headers, tablefmt="pretty"))
 
     conn.close()
