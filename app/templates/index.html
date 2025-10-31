@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UFUEL Meal Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>UFUEL Meal Generator</h1>
+
+        <button id="generate-btn">Generate Meal</button>
+
+        <div id="result">
+            <h2 id="meal-name"></h2>
+            <p id="meal-location"></p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
