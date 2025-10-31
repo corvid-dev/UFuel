@@ -35,6 +35,7 @@ Hot Chocolate,240,38,8,7,Glen,drink
 Mocha Latte,260,32,9,8,Glen,drink
 Vanilla Smoothie,280,40,5,10,Glen,drink
 Strawberry Milk,230,34,6,9,Glen,drink
+Water,0,0,0,0,Glen,drink
 Breakfast Sandwich,480,42,22,28,West Village,breakfast
 Bagel with Cream Cheese,400,60,12,10,West Village,breakfast
 Chia Seed Pudding,350,40,15,12,West Village,breakfast
@@ -69,6 +70,7 @@ Lemonade,180,44,0,0,West Village,drink
 Matcha Latte,220,35,6,8,West Village,drink
 Cold Brew Coffee,100,2,0,2,West Village,drink
 Mango Juice,210,46,0,2,West Village,drink
+Water,0,0,0,0,West Village,drink
 Omelette with Veggies,380,20,24,26,Newell,breakfast
 Breakfast Burrito,500,45,20,28,Newell,breakfast
 Pancakes with Syrup,540,80,10,12,Newell,breakfast
@@ -101,3 +103,4 @@ Watermelon Smoothie,260,45,4,8,Newell,drink
 Black Coffee,15,0,0,2,Newell,drink
 Caramel Frappe,350,55,10,5,Newell,drink
 Espresso,10,0,0,1,Newell,drink
+Water,0,0,0,0,Newell,drink

@@ -1,10 +1,10 @@
-# Use an official lightweight Python image
+# Use Python image
 FROM python:3.11-slim
 
 # Set working directory inside the container
 WORKDIR /app
 
-# Copy everything from your project into the container
+# Copy everything from the project into the container
 COPY . .
 
 # Install dependencies

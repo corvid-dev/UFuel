@@ -1,19 +1,29 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const button = document.getElementById("generate-btn");
-    const mealName = document.getElementById("meal-name");
-    const mealLocation = document.getElementById("meal-location");
+document.getElementById('testForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-    button.addEventListener("click", async () => {
-        try {
-            const response = await fetch("/generate-meal");
-            const data = await response.json();
+  const payload = {
+    age: parseInt(document.getElementById('age').value),
+    height_in: parseFloat(document.getElementById('height').value),
+    weight_lb: parseFloat(document.getElementById('weight').value),
+    gender: document.getElementById('gender').value,
+    activity_level: document.getElementById('activity').value,
+    goal: document.getElementById('goal').value,
+    location: document.getElementById('location').value
+  };
 
-            mealName.textContent = data.meal_name;
-            mealLocation.textContent = data.location ? `Location: ${data.location}` : "";
-        } catch (error) {
-            mealName.textContent = "Error generating meal.";
-            mealLocation.textContent = "";
-            console.error(error);
-        }
+  const output = document.getElementById('output');
+  output.textContent = 'Running...\n';
+
+  try {
+    const res = await fetch('/generate-plan', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
     });
+
+    const data = await res.json();
+    output.textContent = JSON.stringify(data, null, 2);
+  } catch (err) {
+    output.textContent = 'Error:\n' + err;
+  }
 });

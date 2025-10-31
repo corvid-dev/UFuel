@@ -1,35 +1,35 @@
-# ---- Python ----
+# Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 *.py[cod]
 
-# ---- Virtual environments ----
+# Virtual environments
 venv/
 .env/
 .flaskenv
 
-# ---- Databases ----
+# Databases
 *.db
 *.sqlite3
 
-# ---- Docker ----
+# Docker
 *.log
 .dockerignore
 Dockerfile.*
 
-# ---- Legacy code ----
+# Legacy code
 legacy/
 
-# ---- System files ----
+# System files
 .DS_Store
 Thumbs.db
 
-# ---- VS Code ----
+# VS Code
 .vscode/
 *.code-workspace
 
-# ---- Other ----
+# Other
 *.bak
 *.tmp
