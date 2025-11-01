@@ -9,6 +9,7 @@ Meal planning application for Towson Dining Halls
 ### Placeholder Readme
 
 1. Build the database using Python:
+   
   navigate to: app/meal-library:
   run py db_setup.py
   run py import_meals.py
