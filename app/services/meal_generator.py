@@ -49,8 +49,9 @@ def generate_meal_plan(
         drinks = fetch_all(cursor, "drink", loc)
 
         target_cal = total_calories * fraction
-        food_target = target_cal * 0.8
-        drink_target = target_cal * 0.2
+        drink_percent = random.uniform(0,0.2)
+        food_target = target_cal * (1-drink_percent)
+        drink_target = target_cal * drink_percent
 
         # Pick best food combo
         meal_combo = choose_best_combination(meals, food_target)
