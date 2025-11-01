@@ -9,13 +9,15 @@ Meal planning application for Towson Dining Halls
 ### Placeholder Readme
 
 1. Build Docker using PowerShell:
+  Navigate to your folder. Either run Powershell as administrator or use the Set-ExecutionPolicy command below.
+  Then run rebuild_launch_docker.ps1. Sample command below:
 
    ```powershell
    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
    .\rebuild_launch_docker.ps1
    ```
 
-2. Connect to [http://127.0.0.1:5000](http://127.0.0.1:5000)
+3. Connect to [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 
 **Backend**
