@@ -12,8 +12,10 @@ def init_app(app):
 
     @app.route('/generate-plan', methods=['POST'])
     def generate_plan():
-        # generates meal plan based on user demographic and goals
         """
+        Generates a meal plan based on user demographics, goals,
+        and potentially different locations for each meal.
+
         Expected JSON body:
         {
             "age": 25,
@@ -22,7 +24,9 @@ def init_app(app):
             "gender": "male",
             "activity_level": "moderate",
             "goal": "maintain",
-            "location": "Glen"
+            "breakfast_location": "Glen",
+            "lunch_location": "Newell",
+            "dinner_location": "West Village"
         }
         """
         try:
@@ -33,21 +37,23 @@ def init_app(app):
 
             # Step 1: Calculate required daily calories
             required_calories = calories_required(
-                age=data.get('age'),
-                height_in=data.get('height_in'),
-                weight_lb=data.get('weight_lb'),
-                gender=data.get('gender'),
-                activity_level=data.get('activity_level'),
-                goal=data.get('goal')
+                age=data.get("age"),
+                height_in=data.get("height_in"),
+                weight_lb=data.get("weight_lb"),
+                gender=data.get("gender"),
+                activity_level=data.get("activity_level"),
+                goal=data.get("goal")
             )
 
-            # Step 2: Generate meal plan
+            # Step 2: Generate meal plan with per-meal locations
             plan = generate_meal_plan(
                 total_calories=required_calories,
-                location=data.get('location')
+                breakfast_location=data.get("breakfast_location"),
+                lunch_location=data.get("lunch_location"),
+                dinner_location=data.get("dinner_location")
             )
 
-            # Step 3: Return structured JSON
+            # Step 3: Return structured JSON response
             return jsonify({
                 "target_daily_calories": required_calories,
                 "meal_plan": plan

@@ -8,7 +8,9 @@ document.getElementById('testForm').addEventListener('submit', async (e) => {
     gender: document.getElementById('gender').value,
     activity_level: document.getElementById('activity').value,
     goal: document.getElementById('goal').value,
-    location: document.getElementById('location').value
+    breakfast_location: document.getElementById('breakfast_location').value,
+    lunch_location: document.getElementById('lunch_location').value,
+    dinner_location: document.getElementById('dinner_location').value
   };
 
   const output = document.getElementById('output');
@@ -22,8 +24,13 @@ document.getElementById('testForm').addEventListener('submit', async (e) => {
     });
 
     const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || 'Request failed');
+    }
+
     output.textContent = JSON.stringify(data, null, 2);
   } catch (err) {
-    output.textContent = 'Error:\n' + err;
+    output.textContent = 'Error:\n' + err.message;
   }
 });
