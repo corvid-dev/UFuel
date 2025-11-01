@@ -1,3 +1,6 @@
+# To run this script, navigate to the folder containing rebuild_launch_docker.ps1, open Powershell as Administrator, or run command: # Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+# Then run: # .\rebuild_launch_docker.ps1
+
 # Step 1
 Write-Host "Rebuild UFUEL Docker image..."
 
