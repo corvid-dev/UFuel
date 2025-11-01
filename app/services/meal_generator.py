@@ -49,7 +49,7 @@ def generate_meal_plan(
         drinks = fetch_all(cursor, "drink", loc)
 
         target_cal = total_calories * fraction
-        drink_percent = random.uniform(0,0.2)
+        drink_percent = 0.2
         food_target = target_cal * (1-drink_percent)
         drink_target = target_cal * drink_percent
 
@@ -79,6 +79,7 @@ def generate_meal_plan(
             "drink": drink_choice[0],
             "location": loc or "Any",
             "target_fraction": fraction,
+            "target_meal_period_calories": round(target_cal,1),
             "total_meal_period_calories": total_meal_cal
         }
 
@@ -133,6 +134,7 @@ def choose_best_combination(meals, target, max_items=3, tolerance=0.1):
     if combos_in_range:
         return list(random.choice(combos_in_range))
     return list(best_combo) if best_combo else None
+
 
 
 # --- DB & Fallback helpers ---

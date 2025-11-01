@@ -28,6 +28,24 @@ def init_app(app):
             "lunch_location": "Newell",
             "dinner_location": "West Village"
         }
+
+        Response JSON:
+        {
+            "total_target_calories": 2700,
+            "total_selected_calories": 2650,
+            "match_percent": 98.1,
+            "plan": {
+                "breakfast": {
+                    "target_fraction": 0.25,
+                    "target_meal_period_calories": 675,
+                    "total_meal_period_calories": 680,
+                    "location": "Glen",
+                    "meals": [...],
+                    "drink": {...}
+                },
+                ...
+            }
+        }
         """
         try:
             # Parse input from frontend

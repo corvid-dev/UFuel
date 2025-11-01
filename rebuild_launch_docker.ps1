@@ -1,9 +1,11 @@
 # Start 
 # Install Docker Desktop, default directory is C:\Program Files\Docker\
 # To run this script, navigate to the folder containing rebuild_launch_docker.ps1,
-# open Powershell as Administrator, 
-# or run command: Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-# Then run: .\rebuild_launch_docker.ps1
+# open Powershell as Administrator, OR use commands below:
+# 1) 
+# Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+# 2)
+# .\rebuild_launch_docker.ps1
 
 # Step 1: Check if Docker is running
 try {
@@ -82,3 +84,6 @@ docker run -p 5000:5000 -v "${PWD}:/app" ufuel
 
 # Step 8
 Write-Host "Rebuild complete. UFUEL is running at http://localhost:5000"
+
+# Step 9
+Write-Host "Launching browser to http://127.0.0.1:5000/"
