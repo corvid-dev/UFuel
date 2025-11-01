@@ -17,7 +17,7 @@ Meal planning application for Towson Dining Halls
    .\rebuild_launch_docker.ps1
    ```
 
-3. Connect to [http://127.0.0.1:5000](http://127.0.0.1:5000)
+3. Using your internet browser, connect to [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 
 **Backend**
