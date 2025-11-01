@@ -65,6 +65,8 @@ def generate_meal_plan(
         # Fallbacks for missing food
         if not meal_combo:
             meal_combo = [fallback_item(f"{meal_type.title()} Special", food_target, loc)]
+
+        # Fallback for missing drink option will be water
         if not drink_choice:
             drink_choice = [fallback_item("Water", 0, loc)]
 
@@ -96,7 +98,7 @@ def generate_meal_plan(
 
 
 
-# --- Combination Search (0–1 Knapsack heuristic) ---
+# --- Combination Search ---
 # Modified so that it has a tolerance so we have variety, rather than the most optimal.
 def choose_best_combination(meals, target, max_items=3, tolerance=0.1):
     """
@@ -116,8 +118,12 @@ def choose_best_combination(meals, target, max_items=3, tolerance=0.1):
     lower_bound = target * (1 - tolerance)
     upper_bound = target * (1 + tolerance)
 
+    # Generate all possible meal combinations of meals.
+    # The meal combo itself can be a list of meal items between 1 and the max number
     for r in range(1, max_items + 1):
         for combo in itertools.combinations(meals, r):
+
+            # Check to see how close the combo is to the target
             total_cal = sum(m["calories"] for m in combo)
             diff = abs(total_cal - target)
 
@@ -133,6 +139,7 @@ def choose_best_combination(meals, target, max_items=3, tolerance=0.1):
     # Prefer random variety within range, else fallback to best
     if combos_in_range:
         return list(random.choice(combos_in_range))
+    # If theres no combo in range, return the best one
     return list(best_combo) if best_combo else None
 
 
@@ -167,6 +174,7 @@ def fetch_all(cursor, meal_type, location=None):
 
 
 def fallback_item(name, cal, location=None):
+    # Prevents it from failing to provide a meal item
     return {
         "name": name,
         "calories": round(cal, 1),
