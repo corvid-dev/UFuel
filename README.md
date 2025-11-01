@@ -8,7 +8,15 @@ Meal planning application for Towson Dining Halls
 
 ### Placeholder Readme
 
-1. Build Docker using PowerShell:
+1. Build the database using Python:
+  navigate to: app/meal-library:
+  run py db_setup.py
+  run py import_meals.py
+  run py verify_meals.py
+
+  You should see the meal_library.db be created.
+
+2. Build Docker using PowerShell:
   Navigate to your folder. Either run Powershell as administrator or use the Set-ExecutionPolicy command below.
   Then run rebuild_launch_docker.ps1. Sample command below:
 
