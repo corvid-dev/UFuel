@@ -99,7 +99,6 @@ def generate_meal_plan(
 
 
 # --- Combination Search ---
-# Modified so that it has a tolerance so we have variety, rather than the most optimal.
 def choose_best_combination(meals, target, max_items=3, tolerance=0.1):
     """
     Selects up to `max_items` meals whose total calories are within
