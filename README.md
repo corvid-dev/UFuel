@@ -5,7 +5,7 @@ _J3R Industries_
 
 ---
 
-Meal planning application for Towson Dining Halls
+Meal Planning Application for Towson Dining Halls
 
 ### Placeholder Readme
 
