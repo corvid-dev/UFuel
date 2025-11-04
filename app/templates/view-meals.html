@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Meal Library</h1>
+
+<table border="1" cellpadding="5">
+  <tr>
+    <th>Name</th>
+    <th>Calories</th>
+    <th>Carbs</th>
+    <th>Fat</th>
+    <th>Protein</th>
+    <th>Meal Type</th>
+    <th>Location</th>
+  </tr>
+  {% for meal in meals %}
+  <tr>
+    <td>{{ meal.name }}</td>
+    <td>{{ meal.calories }}</td>
+    <td>{{ meal.carbohydrates }}</td>
+    <td>{{ meal.fat }}</td>
+    <td>{{ meal.protein }}</td>
+    <td>{{ meal.meal_type }}</td>
+    <td>{{ meal.location }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+{% endblock %}

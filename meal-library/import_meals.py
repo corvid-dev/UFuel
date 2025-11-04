@@ -16,11 +16,13 @@ def import_meals():
             # Normalize (strip whitespace and make consistent case)
             name = row['name'].strip()
             location = row['location'].strip()
-            calories = row['calories'].strip()
-            carbs = row['carbohydrates'].strip()
-            fat = row['fat'].strip()
-            protein = row['protein'].strip()
+            #calories = row['calories'].strip()
+            carbs = float(row['carbohydrates'].strip() or 0)
+            fat = float(row['fat'].strip() or 0)
+            protein = float(row['protein'].strip() or 0)
             meal_type = row['meal_type'].strip()
+            # Replace calories with calculated calories.
+            calories = round((carbs * 4) + (protein * 4) + (fat * 9), 1)
 
             # Check for an existing meal (case-insensitive match)
             cursor.execute("""
