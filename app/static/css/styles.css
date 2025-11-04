@@ -1,11 +1,11 @@
 body{
-    background-color:rgb(236, 236, 235);
+    background-color:rgb(255, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
     color:black;
     margin:40px;
 }
 h1{
-    color:black;
+    color:rgb(0, 0, 0);
     text-align : center;
 }
 form{
@@ -14,12 +14,30 @@ form{
     align-items:center;
     gap: 15px;
 }
-p{
-    color:black;
+form p{
+    color:rgb(0, 0, 0);
     text-align : center;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom:5px;
+
+}
+form label{
+    font-weight: bold;
+    margin-bottom:5px;
+    color:black;
+}
+input[type="number"],
+select{
+    width:100%;
+    padding:8px;
+    border: 1px solid;
+    border-radius: 10px;
+    font: size 14px;
+    box-sizing:border-box;
 }
 #output {
-    background-color :rgb(248, 179, 5);
+    background-color :rgb(247, 247, 247);
     border: 2px solid black;
     padding :15px;
     border-radius: 8px;
@@ -30,4 +48,15 @@ p{
     color: black;
     white-space: pre-wrap;
     text-align: left;
+}
+.logo{
+    display:block;
+    margin: 0 auto;
+    width:300px;
+}
+.logos{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
 }
