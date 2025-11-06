@@ -20,7 +20,8 @@ Meal Planning Application for Towson Dining Halls
 
 You should see the meal_library.db be created.
 
-2a. Windows: Build Docker using PowerShell:
+2. Build Docker:<br>
+   Windows: Build Docker using PowerShell:
    Install Docker Desktop for Windows.
    Navigate to the UFuel directory in Powershell or in the VSCode terminal.
    Then run rebuild_launch_docker.ps1. Sample command below:
@@ -29,18 +30,16 @@ You should see the meal_library.db be created.
    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
    .\rebuild_launch_docker.ps1
    ```
-   
-2b. MacOS: Build Docker using bash:
+   MacOS: Build Docker using Bash:
    Install Docker Desktop for Mac.
    Navigate to the UFuel directory in the MacOS Terminal. 
    Then run commands below:
-
    ```bash
    chmod +x rebuild_launch_docker.sh
 	./rebuild_launch_docker.sh
    ```
 
-3. Using your internet browser, connect to [http://127.0.0.1:5000](http://127.0.0.1:5000)
+1. Using your internet browser, connect to [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 **Backend**
 
