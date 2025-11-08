@@ -1,0 +1,98 @@
+:root {
+    --bg: #101114;
+    --nav: #181A1F;
+    --text: #E7E9EE;
+    --muted: #9AA0AA;
+    --accent: #5CC8FF;
+}
+
+/*Global*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/*Navbar*/
+header {
+    background: var(--nav);
+    border-bottom: 1px solid #24272b;
+    padding: 0.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.logo img {
+    width: 100px; 
+    object-fit: contain;
+    display: block;
+}
+.logo a{
+    border: none;
+    outline: none;
+    background: none;
+}
+/*Nav list*/
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--muted);
+    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    transition: 0.2s linear;
+}
+
+nav a:hover {
+  background: #20242b;
+  color: var(--accent);
+}
+
+/*Main Content*/
+main {
+    flex: 1;
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/*Footer*/
+footer {
+    color: var(--text);
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 1rem;
+    background: var(--nav);
+    border-top: 1px solid #24272b;
+}
