@@ -30,6 +30,7 @@ document.getElementById('testForm').addEventListener('submit', async (e) => {
     }
 
     output.textContent = JSON.stringify(data, null, 2);
+    renderTable(data);
   } catch (err) {
     output.textContent = 'Error:\n' + err.message;
   }

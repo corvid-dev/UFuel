@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>UFuel Meal Generator Algorithm Test Page</h1>
+
+<form id="testForm">
+    <p>Age: <input type="number" id="age" value="25"></p>
+    <p>Height (in): <input type="number" id="height" value="70"></p>
+    <p>Weight (lb): <input type="number" id="weight" value="165"></p>
+
+    <p>Gender:
+        <select id="gender">
+            <option value="male" selected>male</option>
+            <option value="female">female</option>
+        </select>
+    </p>
+
+    <p>Activity:
+        <select id="activity">
+            <option value="sedentary">sedentary</option>
+            <option value="moderate" selected>moderate</option>
+            <option value="active">active</option>
+        </select>
+    </p>
+
+    <p>Goal:
+        <select id="goal">
+            <option value="lose">lose</option>
+            <option value="maintain" selected>maintain</option>
+            <option value="gain">gain</option>
+        </select>
+    </p>
+
+    <h3>Meal Locations</h3>
+    <p>Breakfast Location:
+        <select id="breakfast_location">
+            <option value="Glen" selected>Glen</option>
+            <option value="Newell">Newell</option>
+            <option value="West Village">West Village</option>
+        </select>
+    </p>
+
+    <p>Lunch Location:
+        <select id="lunch_location">
+            <option value="Glen" selected>Glen</option>
+            <option value="Newell">Newell</option>
+            <option value="West Village">West Village</option>
+        </select>
+    </p>
+
+    <p>Dinner Location:
+        <select id="dinner_location">
+            <option value="Glen" selected>Glen</option>
+            <option value="Newell">Newell</option>
+            <option value="West Village">West Village</option>
+        </select>
+    </p>
+
+    <button type="submit">Run</button>
+</form>
+
+<!-- Table view first -->
+<h3>Table View</h3>
+<table id="resultTable">
+  <thead></thead>
+  <tbody></tbody>
+</table>
+
+<!-- JSON toggle and raw data follow -->
+<button id="toggleJsonBtn" type="button">Hide JSON</button>
+<pre id="output"></pre>
+
+
+
+<!-- Main JS fetch logic -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+<!-- JSON toggle script -->
+<script>
+  const toggleBtn = document.getElementById('toggleJsonBtn');
+  const output = document.getElementById('output');
+
+  toggleBtn.addEventListener('click', () => {
+    const isHidden = output.style.display === 'none';
+    output.style.display = isHidden ? 'block' : 'none';
+    toggleBtn.textContent = isHidden ? 'Hide JSON' : 'Show JSON';
+  });
+</script>
+
+<!-- Table rendering -->
+<script>
+function renderTable(data) {
+  const table = document.getElementById('resultTable');
+  const thead = table.querySelector('thead');
+  const tbody = table.querySelector('tbody');
+  thead.innerHTML = '';
+  tbody.innerHTML = '';
+
+  const plan = data.meal_plan?.plan;
+  if (!plan) {
+    tbody.innerHTML = '<tr><td>No meal plan found.</td></tr>';
+    return;
+  }
+
+  const headers = ['Name', 'Calories', 'Protein', 'Carbs', 'Fat', 'Location'];
+  thead.innerHTML = '<tr>' + headers.map(h => `<th>${h}</th>`).join('') + '</tr>';
+
+  function addRow(item) {
+    const row = document.createElement('tr');
+    // Helper: safely show 0 instead of blank
+    const safe = (v) => (v === undefined || v === null ? '' : v);
+
+    row.innerHTML = `
+      <td>${safe(item.name)}</td>
+      <td>${safe(item.calories)}</td>
+      <td>${safe(item.protein)}</td>
+      <td>${safe(item.carbs)}</td>
+      <td>${safe(item.fat)}</td>
+      <td>${safe(item.location)}</td>
+    `;
+    tbody.appendChild(row);
+  }
+
+  ['breakfast', 'lunch', 'dinner'].forEach(mealPeriod => {
+    const mealData = plan[mealPeriod];
+    if (!mealData) return;
+
+    const headerRow = document.createElement('tr');
+    headerRow.classList.add('section-header');
+    headerRow.innerHTML = `<td colspan="${headers.length}">${mealPeriod.toUpperCase()}</td>`;
+    tbody.appendChild(headerRow);
+
+    if (mealData.drink) addRow(mealData.drink);
+    if (Array.isArray(mealData.meals)) mealData.meals.forEach(addRow);
+  });
+}
+</script>
+{% endblock %}

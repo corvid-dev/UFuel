@@ -30,6 +30,11 @@ Thumbs.db
 .vscode/
 *.code-workspace
 
+# Ignore uploaded CSV files
+uploads/
+*.csv
+*.tmp
+
 # Other
 *.bak
 *.tmp

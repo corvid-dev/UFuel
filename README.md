@@ -28,6 +28,14 @@ You should see the meal_library.db be created.
    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
    .\rebuild_launch_docker.ps1
    ```
+   MacOS: Build Docker using Bash:
+   Install Docker Desktop for Mac.
+   Navigate to the UFuel directory in the MacOS Terminal. 
+   Then run commands below:
+   ```bash
+   chmod +x rebuild_launch_docker.sh
+	./rebuild_launch_docker.sh
+   ```
 
 3. Using your internet browser, connect to [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
