@@ -8,26 +8,26 @@ BREAKFAST_PERCENT = 0.25
 LUNCH_PERCENT = 0.35
 DINNER_PERCENT = 0.4
 
+
 def generate_meal_plan(
     total_calories,
     breakfast_location=None,
     lunch_location=None,
     dinner_location=None,
-    db_path=None
+    db_path=None,
 ):
-    """
-    Generate a location-aware meal plan without cross-location drinks.
-    If no drinks exist for a location, defaults to Water.
-    """
+    """Generates a meal plan based upon user location"""
     calorie_distribution = {
         "breakfast": BREAKFAST_PERCENT,
         "lunch": LUNCH_PERCENT,
-        "dinner": DINNER_PERCENT
+        "dinner": DINNER_PERCENT,
     }
 
     # Resolve DB path
     if db_path is None:
-        db_path = os.path.join(os.path.dirname(__file__), '..', '..', 'meal-library', 'meal_library.db')
+        db_path = os.path.join(
+            os.path.dirname(__file__), "..", "..", "meal-library", "meal_library.db"
+        )
 
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
@@ -38,7 +38,7 @@ def generate_meal_plan(
     location_map = {
         "breakfast": breakfast_location,
         "lunch": lunch_location,
-        "dinner": dinner_location
+        "dinner": dinner_location,
     }
 
     for meal_type, fraction in calorie_distribution.items():
@@ -50,7 +50,7 @@ def generate_meal_plan(
 
         target_cal = total_calories * fraction
         drink_percent = 0.2
-        food_target = target_cal * (1-drink_percent)
+        food_target = target_cal * (1 - drink_percent)
         drink_target = target_cal * drink_percent
 
         # Pick best food combo
@@ -64,16 +64,18 @@ def generate_meal_plan(
 
         # Fallbacks for missing food
         if not meal_combo:
-            meal_combo = [fallback_item(f"{meal_type.title()} Special", food_target, loc)]
+            meal_combo = [
+                fallback_item(f"{meal_type.title()} Special", food_target, loc)
+            ]
 
         # Fallback for missing drink option will be water
         if not drink_choice:
             drink_choice = [fallback_item("Water", 0, loc)]
 
         total_meal_cal = round(
-            sum(m["calories"] for m in meal_combo) +
-            sum(d["calories"] for d in drink_choice),
-            1
+            sum(m["calories"] for m in meal_combo)
+            + sum(d["calories"] for d in drink_choice),
+            1,
         )
 
         plan[meal_type] = {
@@ -81,8 +83,8 @@ def generate_meal_plan(
             "drink": drink_choice[0],
             "location": loc or "Any",
             "target_fraction": fraction,
-            "target_meal_period_calories": round(target_cal,1),
-            "total_meal_period_calories": total_meal_cal
+            "target_meal_period_calories": round(target_cal, 1),
+            "total_meal_period_calories": total_meal_cal,
         }
 
     conn.close()
@@ -92,10 +94,11 @@ def generate_meal_plan(
     return {
         "total_target_calories": round(total_calories, 1),
         "total_selected_calories": round(total_selected, 1),
-        "match_percent": round((total_selected / total_calories) * 100, 1) if total_calories else 0,
-        "plan": plan
+        "match_percent": (
+            round((total_selected / total_calories) * 100, 1) if total_calories else 0
+        ),
+        "plan": plan,
     }
-
 
 
 # --- Combination Search ---
@@ -118,7 +121,7 @@ def choose_best_combination(meals, target, max_items=3, tolerance=0.1):
     upper_bound = target * (1 + tolerance)
 
     # Generate all possible meal combinations of meals.
-    # The meal combo itself can be a list of meal items between 1 and the max number
+    # The meal combo itself can be a list of meal items between 1 and the max_items
     for r in range(1, max_items + 1):
         for combo in itertools.combinations(meals, r):
 
@@ -142,8 +145,8 @@ def choose_best_combination(meals, target, max_items=3, tolerance=0.1):
     return list(best_combo) if best_combo else None
 
 
-
 # --- DB & Fallback helpers ---
+
 
 def fetch_all(cursor, meal_type, location=None):
     query = """
@@ -166,7 +169,7 @@ def fetch_all(cursor, meal_type, location=None):
             "carbs": float(r[2]),
             "fat": float(r[3]),
             "protein": float(r[4]),
-            "location": r[5]
+            "location": r[5],
         }
         for r in results
     ]
@@ -180,5 +183,5 @@ def fallback_item(name, cal, location=None):
         "carbs": 0,
         "fat": 0,
         "protein": 0,
-        "location": location or "Any"
+        "location": location or "Any",
     }

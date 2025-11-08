@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
+<<<<<<< HEAD
     <h1>Meal Library Test Page</h1>
     <p>
         <a href="/">Meal Generator →</a><br>
         <a href="/view-meals">View Meal Library →</a><br>
     </p>
 
+=======
+    <h1>Upload Meal Library Test Page</h1>
+    <hr>
+>>>>>>> main
     <h2>Upload CSV File</h2>
     <form id="uploadForm" enctype="multipart/form-data">
         <input type="file" name="file" accept=".csv" required>
@@ -51,9 +56,12 @@
     </form>
     <p id="manualStatus"></p>
 
+<<<<<<< HEAD
     <hr>
     <p><a href="/">← Back to main page</a></p>
 
+=======
+>>>>>>> main
     <script>
         // --- CSV Upload ---
         document.getElementById("uploadForm").addEventListener("submit", async (e) => {

@@ -4,17 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <title>UFuel</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css', v='1') }}">
     {% block extra_css %}{% endblock %}
+=======
+>>>>>>> main
 </head>
 
 <body>
     <nav>
+<<<<<<< HEAD
         <div class="logo">
             <a href="/">
             <img src="{{ url_for('static', filename='images/UFuelLogo.png') }}" alt="UFuel Logo">
             </a>
         </div>
+=======
+>>>>>>> main
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/generator">Meal Generator</a></li>
@@ -25,6 +31,7 @@
     </nav>
 
     <hr>
+<<<<<<< HEAD
     <main>
     <!-- This is where each page's unique content goes -->
     {% block content %}{% endblock %}
@@ -33,6 +40,11 @@
     <footer>
         <p>© 2025 UFuel — All Rights Reserved</p>
     </footer>
+=======
+
+    <!-- This is where each page's unique content goes -->
+    {% block content %}{% endblock %}
+>>>>>>> main
 </body>
 
 </html>

@@ -162,4 +162,8 @@ Code | Category       | Meaning                       | When to Use
 404  | Not Found      | Resource not found            | Invalid URL or missing record
 409  | Conflict       | Data conflict                 | Duplicate entry or constraint conflict
 500  | Server Error   | Internal server error         | Unexpected backend failure or exception
+<<<<<<< HEAD
 """
+=======
+"""
+>>>>>>> main
