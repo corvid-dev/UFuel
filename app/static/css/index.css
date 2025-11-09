@@ -1,0 +1,17 @@
+.Title{
+text-align:center;
+font-size:100px;
+font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.logo{
+    text-align:center;
+}
+.logo img:hover{
+    opacity:0.8;
+    transform:scale(1.05);
+}
+.descrip{
+text-align:center;
+font-size: 30px;
+font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
