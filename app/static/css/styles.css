@@ -66,3 +66,20 @@ select{
 .output{
     flex:2;
 }
+#resultTable td {
+border-bottom: 1px solid #000;
+padding: 12px 10px;
+text-align: center;
+
+}
+#resultTable th{
+border-bottom: 2px solid #000;
+font-weight: bold;
+}
+
+#resultTable {
+border-collapse: collapse;
+border-spacing: 10px;
+border: 2px solid #000;
+
+}

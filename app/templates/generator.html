@@ -71,7 +71,8 @@
       </select>
     </p>
 
-    <p><label for  ="dinner_location">Dinner Location:</label>
+    <p>
+      <label for  ="dinner_location">Dinner Location:</label>
       <select id="dinner_location">
         <option value="Glen" selected>Glen</option>
         <option value="Newell">Newell</option>
@@ -125,7 +126,7 @@ function renderTable(data) {
   const tbody = table.querySelector('tbody');
   thead.innerHTML = '';
   tbody.innerHTML = '';
-
+  
   const plan = data.meal_plan?.plan;
   if (!plan) {
     tbody.innerHTML = '<tr><td>No meal plan found.</td></tr>';
