@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block styles %} <link rel = "stylesheet" href = "static/css/delete.css">{% endblock %}
 {% block content %}
 <meta charset="UTF-8">
 <title>Delete Meal</title>
@@ -13,8 +14,10 @@
     }
   }
 </script>
-
-<h1>Delete Meal Test Page</h1>
+<img src="static/images/UFuellogo.png" alt="UFuel Logo" width="150"
+  class="logo">
+<div class = "delete">
+<h1>Delete Meal</h1>
 
 {% if message %}
   <p>{{ message }}</p>
@@ -38,4 +41,5 @@
 
   <button type="submit">Delete Meal</button>
 </form>
+</div>
 {% endblock %}

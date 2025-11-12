@@ -59,9 +59,10 @@ select{
     width:300px;
 }
 .output-table{
-     flex: 2;
-    overflow-y: auto;
-    padding: 20px;
+border: 2px solid #000; 
+border-radius: 10px; 
+overflow: hidden;       
+display: inline-block;
 }
 .output{
     flex:2;
@@ -78,8 +79,9 @@ font-weight: bold;
 }
 
 #resultTable {
-border-collapse: collapse;
+border-collapse:collapse;
 border-spacing: 10px;
 border: 2px solid #000;
-
+border-radius:20px;
+overflow:hidden;
 }
