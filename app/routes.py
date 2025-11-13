@@ -32,7 +32,7 @@ def init_app(app):
     @app.route("/")
     def index():
         """Renders the home page."""
-        return render_template("index.html")
+        return render_template("generator.html")
 
     @app.route("/generator")
     def generator():
@@ -149,21 +149,17 @@ def init_app(app):
             return f"<h2>Error deleting meal: {str(e)}</h2>", 500
 
 
-"""
-HTTP Status Code Reference
---------------------------
-Code | Category       | Meaning                       | When to Use
------|----------------|-------------------------------|------------------------------
-200  | Success        | Request succeeded             | Normal successful responses
-201  | Created        | Resource successfully created | POST request that adds new data
-400  | Client Error   | Bad request or invalid input  | Validation or missing field errors
-401  | Unauthorized   | Authentication required       | User not logged in or no token
-403  | Forbidden      | Access denied                 | User lacks permission
-404  | Not Found      | Resource not found            | Invalid URL or missing record
-409  | Conflict       | Data conflict                 | Duplicate entry or constraint conflict
-500  | Server Error   | Internal server error         | Unexpected backend failure or exception
-<<<<<<< HEAD
-"""
-=======
-"""
->>>>>>> main
+# """
+# HTTP Status Code Reference
+# --------------------------
+# Code | Category       | Meaning                       | When to Use
+# -----|----------------|-------------------------------|------------------------------
+# 200  | Success        | Request succeeded             | Normal successful responses
+# 201  | Created        | Resource successfully created | POST request that adds new data
+# 400  | Client Error   | Bad request or invalid input  | Validation or missing field errors
+# 401  | Unauthorized   | Authentication required       | User not logged in or no token
+# 403  | Forbidden      | Access denied                 | User lacks permission
+# 404  | Not Found      | Resource not found            | Invalid URL or missing record
+# 409  | Conflict       | Data conflict                 | Duplicate entry or constraint conflict
+# 500  | Server Error   | Internal server error         | Unexpected backend failure or exception
+# """

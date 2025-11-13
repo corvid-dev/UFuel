@@ -1,48 +1,46 @@
 {% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/delete-meal.css', v='5') }}">
+{% endblock %}
+
 {% block content %}
-<meta charset="UTF-8">
-<<<<<<< HEAD
-<title>Delete Meal</title>
-=======
-<title>Delete Meal Test Page</title>
->>>>>>> main
+<div class="deleteMealPage">
+	<h1>Delete A Meal</h1>
+
+	{% if message %}
+	<p>{{ message }}</p>
+	{% endif %}
+
+	<form action="/delete-meal" method="post">
+		<p>
+			<label for="filterInput">Filter Meals:</label><br>
+			<input type="text" id="filterInput" onkeyup="filterMeals()"
+				placeholder="Type to search (e.g. 'chicken', 'glen')">
+		</p>
+
+		<p>
+			<label for="meal">Select Meal:</label><br>
+			<select name="meal" id="meal" required size="10">
+				<option value="">-- Select a Meal --</option>
+				{% for name, location in meals %}
+				<option value="{{ name }}|{{ location }}">{{ name }} ({{ location }})</option>
+				{% endfor %}
+			</select>
+		</p>
+
+		<button type="submit">Delete Meal</button>
+	</form>
+</div>
+
 <script>
-  function filterMeals() {
-    const filter = document.getElementById("filterInput").value.toLowerCase();
-    const options = document.getElementById("meal").options;
-    for (let i = 0; i < options.length; i++) {
-      const text = options[i].text.toLowerCase();
-      options[i].style.display = text.includes(filter) ? "" : "none";
-    }
-  }
+	function filterMeals() {
+		const filter = document.getElementById("filterInput").value.toLowerCase();
+		const options = document.getElementById("meal").options;
+		for (let i = 0; i < options.length; i++) {
+			const text = options[i].text.toLowerCase();
+			options[i].style.display = text.includes(filter) ? "" : "none";
+		}
+	}
 </script>
-
-<<<<<<< HEAD
-<h1>Delete a Meal</h1>
-=======
-<h1>Delete Meal Test Page</h1>
->>>>>>> main
-
-{% if message %}
-  <p>{{ message }}</p>
-{% endif %}
-
-<form action="/delete-meal" method="post">
-  <p>
-    <label for="filterInput">Filter Meals:</label><br>
-    <input type="text" id="filterInput" onkeyup="filterMeals()" placeholder="Type to search (e.g. 'chicken', 'glen')">
-  </p>
-
-  <p>
-    <label for="meal">Select Meal:</label><br>
-    <select name="meal" id="meal" required size="10" style="width: 300px;">
-      <option value="">-- Select a Meal --</option>
-      {% for name, location in meals %}
-      <option value="{{ name }}|{{ location }}">{{ name }} ({{ location }})</option>
-      {% endfor %}
-    </select>
-  </p>
-
-  <button type="submit">Delete Meal</button>
-</form>
 {% endblock %}
