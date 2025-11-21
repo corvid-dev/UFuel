@@ -1,0 +1,137 @@
+.uploadPage {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.uploadPage h1 {
+	color: var(--text);
+	width: 100%;
+	margin-bottom: 1rem;
+	position: relative;
+	padding-bottom: 0.5rem;
+}
+
+.uploadPage h1::after {
+	content: "";
+	display: block;
+	height: 1px;
+	background-color: var(--border);
+	margin: 5px 0;
+}
+
+.uploadPage h2 {
+	font-size: 1.1rem;
+	font-weight: 700;
+	color: var(--text);
+	margin-bottom: 0.5rem;
+}
+
+#uploadForm {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 0.8rem;
+	width: 100%;
+}
+
+#uploadForm input[type="file"] {
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	padding: 0.4rem;
+	font-size: 0.9rem;
+	background: var(--bg);
+	color: var(--text);
+	width: 100%;
+	box-sizing: border-box;
+}
+
+input[type="file"]::file-selector-button {
+	background: var(--text);
+	color: var(--bg);
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+	background: var(--btn-hover);
+}
+
+#uploadForm button {
+	background: var(--accent);
+	color: var(--bg);
+	border: none;
+	border-radius: 8px;
+	padding: 0.6rem 1rem;
+	font-weight: 700;
+	cursor: pointer;
+	width: 100%;
+	font-size: 0.95rem;
+}
+
+#uploadForm button:hover {
+	background: var(--btn-hover);
+}
+
+#manualForm {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+}
+
+#manualForm p {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+	margin-bottom: 0.5rem;
+}
+
+#manualForm input, #manualForm select {
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	padding: 0.4rem;
+	font-size: 0.9rem;
+	color: var(--text);
+	background: var(--bg);
+}
+
+#manualForm button {
+	background: var(--accent);
+	color: var(--bg);
+	border: none;
+	border-radius: 8px;
+	padding: 0.6rem 1rem;
+	font-weight: 700;
+	font-size: 0.95rem;
+	cursor: pointer;
+	width: 100%;
+}
+
+#manualForm button:hover {
+	background: var(--btn-hover);
+}
+
+#manualForm #caloriesDisplay {
+	display: inline-block;
+	font-weight: 700;
+	color: var(--text);
+	font-size: 1rem;
+}
+
+#manualForm p:nth-of-type(2) {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 1rem;
+}
+
+#uploadStatus, #manualStatus {
+	font-size: 0.9rem;
+	margin-top: 0.5rem;
+	font-weight: 500;
+	color: var(--text);
+}

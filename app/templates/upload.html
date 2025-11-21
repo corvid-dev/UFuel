@@ -1,7 +1,13 @@
 {% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css', v='3') }}">
+{% endblock %}
+
 {% block content %}
-    <h1>Upload Meal Library Test Page</h1>
-    <hr>
+<div class="uploadPage">
+    <h1>Upload A Library Or Add A Meal</h1>
+
     <h2>Upload CSV File</h2>
     <form id="uploadForm" enctype="multipart/form-data">
         <input type="file" name="file" accept=".csv" required>
@@ -9,17 +15,15 @@
     </form>
     <p id="uploadStatus"></p>
 
-    <hr>
-
     <h2>Add a Single Meal</h2>
     <form id="manualForm">
         <p>
             Name: <input type="text" name="name" required>
         </p>
         <p>
-            Protein (g): <input type="number" step="1" id="protein" name="protein" required>
-            Carbs (g): <input type="number" step="1" id="carbohydrates" name="carbohydrates" required>
-            Fat (g): <input type="number" step="1" id="fat" name="fat" required>
+            <label>Protein (g): <input type="number" step="1" id="protein" name="protein" required></label>
+            <label>Carbs (g): <input type="number" step="1" id="carbohydrates" name="carbohydrates" required></label>
+            <label>Fat (g): <input type="number" step="1" id="fat" name="fat" required></label>
         </p>
         <p>
             Calories: <span id="caloriesDisplay">0</span>
@@ -28,10 +32,10 @@
             Meal Type:
             <select name="meal_type" required>
                 <option value="" disabled selected>--select--</option>
-                <option value="breakfast">breakfast</option>
-                <option value="lunch">lunch</option>
-                <option value="dinner">dinner</option>
-                <option value="drink">drink</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
+                <option value="drink">Drink</option>
             </select>
         </p>
         <p>
@@ -46,49 +50,46 @@
         <button type="submit">Add Meal</button>
     </form>
     <p id="manualStatus"></p>
+</div>
 
-    <script>
-        // --- CSV Upload ---
-        document.getElementById("uploadForm").addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const res = await fetch("/upload-meal-library", { method: "POST", body: formData });
-            const data = await res.json();
-            document.getElementById("uploadStatus").textContent = data.message || data.error;
+<script>
+    document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const res = await fetch("/upload-meal-library", { method: "POST", body: formData });
+        const data = await res.json();
+        document.getElementById("uploadStatus").textContent = data.message || data.error;
+    });
+
+    function updateCalories() {
+        const protein = parseFloat(document.getElementById("protein").value) || 0;
+        const carbs = parseFloat(document.getElementById("carbohydrates").value) || 0;
+        const fat = parseFloat(document.getElementById("fat").value) || 0;
+        const calories = (protein * 4) + (carbs * 4) + (fat * 9);
+        document.getElementById("caloriesDisplay").textContent = calories.toFixed(1);
+    }
+
+    ["protein", "carbohydrates", "fat"].forEach(id => {
+        document.getElementById(id).addEventListener("input", updateCalories);
+    });
+
+    document.getElementById("manualForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const jsonData = Object.fromEntries(formData.entries());
+
+        const protein = parseFloat(jsonData.protein) || 0;
+        const carbs = parseFloat(jsonData.carbohydrates) || 0;
+        const fat = parseFloat(jsonData.fat) || 0;
+        jsonData.calories = (protein * 4) + (carbs * 4) + (fat * 9);
+
+        const res = await fetch("/add-meal", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(jsonData)
         });
-
-        // --- Auto-calculate and display calories ---
-        function updateCalories() {
-            const protein = parseFloat(document.getElementById("protein").value) || 0;
-            const carbs = parseFloat(document.getElementById("carbohydrates").value) || 0;
-            const fat = parseFloat(document.getElementById("fat").value) || 0;
-            const calories = (protein * 4) + (carbs * 4) + (fat * 9);
-            document.getElementById("caloriesDisplay").textContent = calories.toFixed(1);
-        }
-
-        ["protein", "carbohydrates", "fat"].forEach(id => {
-            document.getElementById(id).addEventListener("input", updateCalories);
-        });
-
-        // --- Manual Meal Entry ---
-        document.getElementById("manualForm").addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const jsonData = Object.fromEntries(formData.entries());
-
-            // Calculate calories before sending to backend
-            const protein = parseFloat(jsonData.protein) || 0;
-            const carbs = parseFloat(jsonData.carbohydrates) || 0;
-            const fat = parseFloat(jsonData.fat) || 0;
-            jsonData.calories = (protein * 4) + (carbs * 4) + (fat * 9);
-
-            const res = await fetch("/add-meal", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(jsonData)
-            });
-            const data = await res.json();
-            document.getElementById("manualStatus").textContent = data.message || data.error;
-        });
-    </script>
+        const data = await res.json();
+        document.getElementById("manualStatus").textContent = data.message || data.error;
+    });
+</script>
 {% endblock %}

@@ -2,25 +2,35 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>UFuel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css', v='1') }}">
+    {% block extra_css %}{% endblock %}
 </head>
 
 <body>
     <nav>
+        <a href="/" class="logo">
+            <img src="{{ url_for('static', filename='images/UFuelLogo.png') }}" alt="UFuel Logo" />
+            <span>Meal Generator</span>
+        </a>
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/generator">Meal Generator</a></li>
             <li><a href="/upload">Upload Meals</a></li>
             <li><a href="/view-meals">View Library</a></li>
             <li><a href="/delete-meal">Delete Meal</a></li>
         </ul>
     </nav>
 
-    <hr>
+    <hr />
 
-    <!-- This is where each page's unique content goes -->
-    {% block content %}{% endblock %}
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2025 UFuel — All Rights Reserved</p>
+    </footer>
 </body>
 
 </html>
