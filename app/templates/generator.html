@@ -134,6 +134,15 @@
 			tbody.appendChild(row);
 		}
 
+		let totals = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+		function accumulate(item) {
+			totals.calories += Number(item.calories || 0);
+			totals.protein += Number(item.protein || 0);
+			totals.carbs += Number(item.carbs || 0);
+			totals.fat += Number(item.fat || 0);
+		}
+
+
 		['breakfast', 'lunch', 'dinner'].forEach(mealPeriod => {
 			const mealData = plan[mealPeriod];
 			if (!mealData) return;
@@ -141,9 +150,65 @@
 			headerRow.classList.add('section-header');
 			headerRow.innerHTML = `<td colspan="${headers.length}">${mealPeriod.toUpperCase()}</td>`;
 			tbody.appendChild(headerRow);
-			if (mealData.drink) addRow(mealData.drink);
-			if (Array.isArray(mealData.meals)) mealData.meals.forEach(addRow);
+
+			if (mealData.drink) {
+				addRow(mealData.drink);
+				accumulate(mealData.drink);
+			}
+			if (Array.isArray(mealData.meals)) {
+				mealData.meals.forEach(meal => {
+					addRow(meal);
+					accumulate(meal);
+				});
+			}
+
 		});
+
+		// Create totals row
+		const totalRow = document.createElement('tr');
+		totalRow.classList.add('total-row');
+		totalRow.innerHTML = `
+  <td><strong>DAILY TOTAL</strong></td>
+  <td><strong>${totals.calories}</strong></td>
+  <td><strong>${totals.protein}</strong></td>
+  <td><strong>${totals.carbs}</strong></td>
+  <td><strong>${totals.fat}</strong></td>
+  <td></td>
+`;
+		tbody.appendChild(totalRow);
+
 	}
 </script>
+
+
+
+<script>
+	// Temporarily store the user's info
+document.addEventListener("DOMContentLoaded", () => {
+    const fields = [
+        "age", "height", "weight",
+        "gender", "activity", "goal",
+        "breakfast_location", "lunch_location", "dinner_location"
+    ];
+
+    // Load saved values when page loads
+    fields.forEach(id => {
+        const stored = sessionStorage.getItem(id);
+        if (stored !== null) {
+            document.getElementById(id).value = stored;
+        }
+    });
+
+    // Save every time user changes any field
+    fields.forEach(id => {
+        document.getElementById(id).addEventListener("change", (e) => {
+            sessionStorage.setItem(id, e.target.value);
+        });
+    });
+});
+</script>
+
+
+
+
 {% endblock %}
