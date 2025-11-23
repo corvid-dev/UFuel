@@ -53,6 +53,11 @@ def init_app(app):
         except Exception as e:
             return jsonify({"error": str(e)}), 500
 
+    @app.route("/about")
+    def about():
+        """Renders the About page."""
+        return render_template("about.html")
+
     # Meal Library CRUD
 
     # (Create) Meal Library Upload
@@ -147,6 +152,7 @@ def init_app(app):
 
         except Exception as e:
             return f"<h2>Error deleting meal: {str(e)}</h2>", 500
+        
 
 
 # """
