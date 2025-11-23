@@ -56,10 +56,10 @@ You should see the meal_library.db be created.
 **Frontend**
 
 ```
-- HTML?
+- HTML
 
-- Javascript?
+- Javascript
 
-- css?
+- css
 
 ```
