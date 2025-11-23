@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css', v='1') }}">
+{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <h1>About UFuel</h1>
+    <p class="intro">
+        UFuel is a nutrition-focused web application designed to help students 
+        meet their dietary goals while navigating busy academic schedules.
+    </p>
+
+    <section>
+        <h2>Our Mission</h2>
+        <p>
+            UFuel simplifies nutrition for students who need quick, reliable, 
+            and personalized meal recommendations. Using user input such as 
+            demographics, goals, and dietary restrictions, the system generates 
+            tailored meal plans built from a curated and maintainable food library.
+        </p>
+    </section>
+
+    <section>
+        <h2>Who We Designed It For</h2>
+        <p>UFuel is built for Towson University students and staff who want quick,
+            simple, and personalized nutrition guidance. Whether you’re grabbing food 
+            between classes or planning healthier habits, UFuel helps you make better 
+            choices with zero stress.
+        </p>
+    </section>
+
+    <section>
+        <h2>Our Team</h2>
+        <p class="team">
+            Justin Deeb · Justice Moody · Jeffrey Heidrick · Raphael Zeldin
+        </p>
+    </section>
+</div>
+
+<div class="about-cta">
+    <h2>Ready to Try UFuel?</h2>
+    <p>Start exploring healthier, campus-friendly meal options personalized for Towson students and staff.</p>
+    <a href="/generator" class="cta-btn">Generate a Meal Plan</a>
+</div>
+
+{% endblock %}
